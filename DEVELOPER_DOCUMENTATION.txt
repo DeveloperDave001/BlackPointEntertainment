@@ -1,0 +1,419 @@
+================================================================================
+BLACKPOINT STUDIO - DEVELOPER DOCUMENTATION
+================================================================================
+
+Project: Blackpoint Studio Website & Booking System
+Version: 1.0
+Last Updated: 2026
+Contact: hello@blackpoint.studio
+
+================================================================================
+TABLE OF CONTENTS
+================================================================================
+
+1. Project Overview
+2. File Structure
+3. Pages & Features
+4. Technical Stack
+5. Key Components
+6. Admin Panel
+7. Booking System
+8. Customization Guide
+9. Deployment
+10. Maintenance
+
+================================================================================
+1. PROJECT OVERVIEW
+================================================================================
+
+Blackpoint Studio is a professional audio production and creative studio website
+featuring:
+- Homepage with portfolio showcase
+- Multi-step booking system
+- Admin panel for managing bookings
+- Responsive design with dark theme
+- GSAP animations
+- PDF/CSV export functionality
+
+================================================================================
+2. FILE STRUCTURE
+================================================================================
+
+Root Directory/
+├── css/
+│   ├── admin.css          # Admin panel styles
+│   ├── booking.css        # Booking page styles
+│   ├── preloader.css      # Loading animation styles
+│   └── styles.css         # Main homepage styles
+│
+├── js/
+│   ├── admin.js           # Admin panel functionality
+│   ├── booking.js         # Booking form logic
+│   ├── main.js            # Homepage animations & interactions
+│   └── preloader.js       # Loading screen logic
+│
+├── img/
+│   ├── fav-BlackPoint.png # Favicon
+│   ├── Logo-BlackPoint.png # Main logo
+│   ├── Icon-BlackPoint.png # Icon version
+│   ├── hero-video.mp4     # Homepage hero video
+│   ├── HOME1.jpg          # Homepage images
+│   ├── HOME2.jpg
+│   ├── home3.jpg
+│   └── podcast.mp4        # Additional video content
+│
+├── index.html             # Homepage
+├── booking.html           # Booking page
+└── admin.html             # Admin panel
+
+================================================================================
+3. PAGES & FEATURES
+================================================================================
+
+3.1 HOMEPAGE (index.html)
+--------------------------
+Sections:
+- Hero Section: Video background with CTA
+- Selected Work: Portfolio showcase with hover effects
+- Manifesto: Brand statement with "We Record, We Mix, We Master"
+- Capabilities: Service offerings (Music, Podcast, Photo)
+- Recording Session: Full-screen video section
+- Book with a Click: 7 session types with booking buttons
+- Contact: Contact form and social links
+- Footer: Copyright and back-to-top button
+
+Navigation Menu:
+- Home (links to index.html)
+- Make Booking (links to booking.html)
+
+3.2 BOOKING PAGE (booking.html)
+--------------------------------
+Features:
+- Hero section with headline "Let's Make Greatness Together!"
+- Service selection grid (7 session types):
+  1. Recording Session
+  2. Live Session
+  3. Rehearsal Session
+  4. Mixing Session
+  5. Mastering Session
+  6. Photo Shoot Session
+  7. Podcast Session
+
+Multi-step form:
+- Step 1: Service selection
+- Step 2: Project details (name, type, description, budget, references)
+- Step 3: Timeline (start date, delivery date, urgency, location)
+- Step 4: Contact info (name, company, email, phone, referral source)
+
+URL Parameters:
+- Supports ?session=<type> to pre-select service and skip to step 2
+- Example: booking.html?session=recording
+
+3.3 ADMIN PANEL (admin.html)
+-----------------------------
+Features:
+- Dashboard with statistics (Total, Rush Jobs, Most Booked, This Month)
+- Booking table with search and filters
+- Service and urgency filters
+- Bulk selection and actions
+- Individual booking details modal
+- PDF export (single, selected, or all bookings)
+- CSV export
+- Demo data loader
+- LocalStorage-based data persistence
+
+================================================================================
+4. TECHNICAL STACK
+================================================================================
+
+Frontend:
+- HTML5
+- CSS3 (Custom properties, Grid, Flexbox)
+- Vanilla JavaScript (ES6+)
+
+Libraries:
+- GSAP 3.12.2 (animations)
+- ScrollTrigger (scroll-based animations)
+- jsPDF 2.5.1 (PDF generation)
+
+Fonts:
+- IBM Plex Mono (monospace)
+- Bebas Neue (display)
+- DM Sans (body text)
+- Sora (headings)
+- Inter (UI elements)
+
+Storage:
+- LocalStorage (booking data persistence)
+
+================================================================================
+5. KEY COMPONENTS
+================================================================================
+
+5.1 COLOR SCHEME
+----------------
+--bg:        #0A0A0A (Background)
+--surface:   #111111 (Cards/Panels)
+--surface2:  #181818 (Hover states)
+--border:    #222222 (Borders)
+--red:       #B91C1C (Accent/CTA)
+--text:      #F0EDE8 (Primary text)
+--muted:     #6b6b6b (Secondary text)
+
+5.2 ANIMATIONS
+--------------
+- Preloader with brand reveal
+- GSAP timeline animations
+- ScrollTrigger for section reveals
+- Smooth transitions on hover
+- Parallax effects
+
+5.3 RESPONSIVE DESIGN
+---------------------
+Breakpoints:
+- Desktop: 1200px+
+- Tablet: 768px - 1199px
+- Mobile: < 768px
+
+Admin panel sidebar collapses on mobile (< 900px)
+
+================================================================================
+6. ADMIN PANEL
+================================================================================
+
+6.1 DATA STRUCTURE
+------------------
+Booking Object:
+{
+  id: string,
+  name: string,
+  company: string,
+  email: string,
+  phone: string,
+  service: string,
+  projectName: string,
+  projectType: string,
+  description: string,
+  budget: string,
+  references: string,
+  startDate: string,
+  deliveryDate: string,
+  urgency: string,
+  location: string,
+  referral: string,
+  newsletter: string,
+  submittedAt: string (ISO date)
+}
+
+6.2 STORAGE
+-----------
+Key: 'blackpoint_bookings'
+Type: LocalStorage
+Format: JSON array
+
+6.3 FUNCTIONS
+-------------
+Core Functions:
+- loadBookings(): Load from localStorage
+- saveBookings(): Save to localStorage
+- render(): Update UI with current data
+- getFiltered(): Apply search/filter logic
+- loadSampleData(): Load demo bookings
+
+Modal Functions:
+- openModal(id): Show booking details
+- closeModal(): Hide modal
+
+Export Functions:
+- exportSinglePDF(id): Export one booking
+- exportSelectedPDF(): Export selected bookings
+- exportAllPDF(): Export all bookings
+- exportCSV(): Export to CSV format
+
+Filter Functions:
+- applyFilters(): Apply search and filters
+- clearFilters(): Reset all filters
+- filterByUrgency(urgency): Quick filter
+
+Selection Functions:
+- toggleSelect(id, checked): Toggle single selection
+- toggleSelectAll(): Toggle all visible items
+- updateBulkBar(): Update bulk action bar
+
+Delete Functions:
+- confirmDelete(id): Show delete confirmation
+- deleteSelected(): Delete multiple bookings
+
+6.4 PDF GENERATION
+------------------
+Template:
+- Dark theme (#0A0A0A background)
+- Red accent bar (#B91C1C)
+- Client name in large text
+- Organized sections (Client Info, Project Details, Timeline)
+- Footer with contact info and generation date
+
+================================================================================
+7. BOOKING SYSTEM
+================================================================================
+
+7.1 FORM VALIDATION
+-------------------
+Required Fields:
+- Step 2: Project name, project type, description, budget
+- Step 3: Start date, delivery date, urgency
+- Step 4: Name, email
+
+7.2 FORM FLOW
+-------------
+1. User selects service (or arrives via URL parameter)
+2. Form advances through 4 steps
+3. Navigation buttons (Back/Next/Submit) update based on step
+4. Progress indicator shows current step
+5. Summary sidebar displays selected options
+6. On submit, data is saved to localStorage via admin.js integration
+
+7.3 INTEGRATION HOOK
+--------------------
+window.BlackpointAdmin.saveBooking(formData)
+
+This function is called from booking.js to save form submissions.
+The admin panel automatically picks up new bookings from localStorage.
+
+================================================================================
+8. CUSTOMIZATION GUIDE
+================================================================================
+
+8.1 CHANGING COLORS
+-------------------
+Edit CSS variables in styles.css, booking.css, and admin.css:
+:root {
+  --bg: #0A0A0A;
+  --red: #B91C1C;
+  --text: #F0EDE8;
+  /* etc. */
+}
+
+8.2 ADDING NEW SESSION TYPES
+-----------------------------
+1. Add to homepage (index.html):
+   - Add new note-item in "Book with a Click" section
+   - Set href="booking.html?session=<type>"
+
+2. Add to booking page (booking.html):
+   - Add new service-card in service grid
+   - Set data-service="<type>"
+
+3. Update booking.js:
+   - Add to serviceNames object in initServiceSelection()
+
+4. Update admin.js:
+   - Add to svcLabel() function
+   - Add color class in admin.css for .service-tag.<type>
+
+8.3 MODIFYING FORM FIELDS
+--------------------------
+Edit booking.html form steps and update booking.js validation logic.
+
+8.4 CHANGING LOGO/BRANDING
+---------------------------
+Replace files in img/ folder:
+- Logo-BlackPoint.png (main logo)
+- fav-BlackPoint.png (favicon)
+- Icon-BlackPoint.png (icon version)
+
+Update references in HTML files if filenames change.
+
+================================================================================
+9. DEPLOYMENT
+================================================================================
+
+9.1 REQUIREMENTS
+----------------
+- Web server (Apache, Nginx, or static hosting)
+- No backend required (client-side only)
+- HTTPS recommended for production
+
+9.2 HOSTING OPTIONS
+-------------------
+- Netlify (recommended for static sites)
+- Vercel
+- GitHub Pages
+- AWS S3 + CloudFront
+- Traditional web hosting
+
+9.3 DEPLOYMENT STEPS
+--------------------
+1. Upload all files maintaining directory structure
+2. Ensure index.html is in root directory
+3. Test all pages and links
+4. Verify video/image loading
+5. Test booking form submission
+6. Test admin panel functionality
+
+9.4 CONFIGURATION
+-----------------
+No configuration files needed. All settings are in code.
+
+For production:
+- Minify CSS/JS files
+- Optimize images
+- Enable gzip compression
+- Set up CDN for assets
+- Configure caching headers
+
+================================================================================
+10. MAINTENANCE
+================================================================================
+
+10.1 REGULAR TASKS
+------------------
+- Monitor localStorage size (browser limit: ~5-10MB)
+- Export bookings regularly to prevent data loss
+- Update copyright year in footer
+- Check for broken links
+- Test forms periodically
+
+10.2 BACKUP STRATEGY
+--------------------
+Admin panel provides export functions:
+- Export all bookings to PDF (for records)
+- Export to CSV (for spreadsheet analysis)
+- Recommend weekly exports
+
+10.3 BROWSER COMPATIBILITY
+--------------------------
+Tested on:
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+Features requiring modern browsers:
+- CSS Grid
+- CSS Custom Properties
+- ES6 JavaScript
+- LocalStorage API
+
+10.4 TROUBLESHOOTING
+--------------------
+Issue: Bookings not appearing in admin panel
+Solution: Check browser console for errors, verify localStorage is enabled
+
+Issue: Videos not playing
+Solution: Check video file paths, ensure MP4 format, check autoplay policies
+
+Issue: Animations not working
+Solution: Verify GSAP CDN is loading, check browser console
+
+Issue: PDF export fails
+Solution: Verify jsPDF CDN is loading, check browser console
+
+10.5 SUPPORT
+------------
+For technical support or questions:
+Email: hello@blackpoint.studio
+
+================================================================================
+END OF DOCUMENTATION
+================================================================================
