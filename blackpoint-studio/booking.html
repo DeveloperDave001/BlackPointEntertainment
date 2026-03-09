@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book a Project — Blackpoint Studio</title>
+  <link rel="icon" type="image/png" href="img/fav-BlackPoint.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Sora:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/booking.css">
+  <link rel="stylesheet" href="css/preloader.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+</head>
+<body>
+  <!-- Creative Preloader -->
+  <div class="preloader" id="preloader">
+    <div class="preloader-content">
+      <div class="brand-reveal">
+        <img src="img/Logo-BlackPoint.png" alt="Blackpoint Studio" class="brand-logo-img" height="60">
+        <p class="tagline-text">Stories That Move People</p>
+      </div>
+      <div class="loading-progress">
+        <div class="progress-track">
+          <div class="progress-fill" id="progressFill"></div>
+        </div>
+        <div class="progress-text">
+          <span class="loading-label">Loading</span>
+          <span class="loading-percent" id="loadingPercent">0%</span>
+        </div>
+      </div>
+      <div class="preloader-noise"></div>
+      <div class="preloader-vignette"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main-wrapper" id="mainWrapper">
+  <!-- Noise Overlay -->
+  <div class="noise-overlay"></div>
+
+  <!-- Navigation -->
+  <header class="nav-header" id="navHeader">
+    <a href="index.html" class="nav-logo">
+      <img src="img/Logo-BlackPoint.png" alt="Blackpoint Studio" height="48">
+    </a>
+    <button class="nav-menu-btn" id="menuBtn" onclick="document.getElementById('menuOverlay').classList.add('active'); document.body.style.overflow='hidden';">
+      <span class="label-mono" style="font-size: 11px;">Menu</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+  </header>
+
+  <!-- Menu Overlay -->
+  <div class="menu-overlay" id="menuOverlay">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding: 20px 0;">
+      <img src="img/Logo-BlackPoint.png" alt="Blackpoint Studio" height="48">
+      <button class="nav-menu-btn" id="closeMenuBtn" onclick="document.getElementById('menuOverlay').classList.remove('active'); document.body.style.overflow='';">
+        <span class="label-mono" style="font-size: 11px;">Close</span>
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <nav class="menu-nav">
+      <a href="index.html" class="menu-link">Home</a>
+      <a href="booking.html" class="menu-link">Make Booking</a>
+    </nav>
+    <div class="menu-footer">
+      <span class="label-mono" style="color: var(--text-secondary);">Based in Lagos · Working Worldwide</span>
+      <a href="mailto:hello@blackpoint.studio" style="color: var(--text-secondary); text-decoration: none;">hello@blackpoint.studio</a>
+    </div>
+  </div>
+
+  <!-- Booking Hero -->
+  <section class="booking-hero" id="bookingHero">
+    <div class="booking-hero-bg" id="bookingHeroBg">
+      <img src="img/HOME1.jpg" alt="Blackpoint Studio" loading="eager">
+    </div>
+    <div class="booking-hero-content">
+      <div class="booking-hero-text" id="bookingHeroText">
+        <span class="section-label label-mono">Start a Project</span>
+        <h1 class="booking-headline headline-xl">
+          <span>Let's Make</span>
+          <span style="color: #B91C1C;">Greatness</span>
+          <span>Together!</span>
+        </h1>
+        <p class="booking-subheadline">
+          Tell us about your vision. We'll help bring it to life.
+        </p>
+      </div>
+      <div class="booking-scroll-indicator" id="scrollIndicator">
+        <span class="label-mono">Scroll to begin</span>
+        <div class="scroll-line"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Selection -->
+  <section class="service-selection" id="serviceSelection">
+    <div class="selection-header" id="selectionHeader">
+      <span class="section-label label-mono">01 — Select Service</span>
+      <h2 class="section-title headline-lg">What do you need?</h2>
+    </div>
+    <div class="service-grid" id="serviceGrid">
+      <div class="service-card" data-service="recording">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 18V5l12-2v13"></path>
+            <circle cx="6" cy="18" r="3"></circle>
+            <circle cx="18" cy="16" r="3"></circle>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Recording Session</h3>
+        <p class="service-card-desc">Professional studio recording for your music, vocals, and instruments</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="live">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Live Session</h3>
+        <p class="service-card-desc">Live performance recording and streaming services</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="rehearsal">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Rehearsal Session</h3>
+        <p class="service-card-desc">Practice space with professional equipment and acoustics</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="mixing">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="4" y1="21" x2="4" y2="14"></line>
+            <line x1="4" y1="10" x2="4" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12" y2="3"></line>
+            <line x1="20" y1="21" x2="20" y2="16"></line>
+            <line x1="20" y1="12" x2="20" y2="3"></line>
+            <line x1="1" y1="14" x2="7" y2="14"></line>
+            <line x1="9" y1="8" x2="15" y2="8"></line>
+            <line x1="17" y1="16" x2="23" y2="16"></line>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Mixing Session</h3>
+        <p class="service-card-desc">Professional audio mixing to balance and enhance your tracks</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="mastering">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Mastering Session</h3>
+        <p class="service-card-desc">Final polish and optimization for distribution-ready audio</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="photo">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Photo Shoot Session</h3>
+        <p class="service-card-desc">Professional photography for brands, lookbooks, and campaigns</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+      <div class="service-card" data-service="podcast">
+        <div class="service-card-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
+        </div>
+        <h3 class="service-card-title">Podcast Session</h3>
+        <p class="service-card-desc">End-to-end podcast creation, recording, editing, and distribution</p>
+        <div class="service-card-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Booking Form -->
+  <section class="booking-form-section" id="bookingForm">
+    <div class="booking-form-container">
+      <div class="form-sidebar" id="formSidebar">
+        <div class="form-progress" id="formProgress">
+          <div class="progress-step active" data-step="1">
+            <span class="progress-number">01</span>
+            <span class="progress-label">Service</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="2">
+            <span class="progress-number">02</span>
+            <span class="progress-label">Details</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="3">
+            <span class="progress-number">03</span>
+            <span class="progress-label">Timeline</span>
+          </div>
+          <div class="progress-line"></div>
+          <div class="progress-step" data-step="4">
+            <span class="progress-number">04</span>
+            <span class="progress-label">Contact</span>
+          </div>
+        </div>
+        <div class="form-summary" id="formSummary">
+          <h4 class="label-mono">Your Selection</h4>
+          <div class="summary-services" id="summaryServices">
+            <span class="summary-empty">Select a service above</span>
+          </div>
+          <div class="summary-divider"></div>
+          <div class="summary-item">
+            <span class="label-mono">Budget Range</span>
+            <span id="summaryBudget">—</span>
+          </div>
+          <div class="summary-item">
+            <span class="label-mono">Project Type</span>
+            <span id="summaryType">—</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-main">
+        <form id="bookingFormElement">
+          <!-- Step 1: Service (already selected) -->
+          <div class="form-step" data-step="1">
+            <input type="hidden" name="service" id="selectedService" value="">
+          </div>
+
+          <!-- Step 2: Project Details -->
+          <div class="form-step" data-step="2">
+            <div class="step-header">
+              <span class="section-label label-mono">02 — Project Details</span>
+              <h3 class="step-title headline-lg">Tell us about your project</h3>
+            </div>
+            
+            <div class="form-group">
+              <label class="label-mono">Project Name</label>
+              <input type="text" name="projectName" placeholder="What's your project called?" required>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Project Type</label>
+              <div class="select-wrapper">
+                <select name="projectType" required>
+                  <option value="" disabled selected>Select project type</option>
+                  <option value="commercial">Commercial / Ad</option>
+                  <option value="brand-film">Brand Film</option>
+                  <option value="documentary">Documentary</option>
+                  <option value="music-video">Music Video</option>
+                  <option value="fashion">Fashion / Lookbook</option>
+                  <option value="social">Social Media Content</option>
+                  <option value="event">Event / Behind the Scenes</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Project Description</label>
+              <textarea name="description" rows="4" placeholder="Describe your vision, key messages, target audience, and any specific requirements..." required></textarea>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="label-mono">Estimated Budget</label>
+                <div class="budget-options" id="budgetOptions">
+                  <button type="button" class="budget-btn" data-budget="5k-15k">$5K - $15K</button>
+                  <button type="button" class="budget-btn" data-budget="15k-50k">$15K - $50K</button>
+                  <button type="button" class="budget-btn" data-budget="50k-100k">$50K - $100K</button>
+                  <button type="button" class="budget-btn" data-budget="100k+">$100K+</button>
+                </div>
+                <input type="hidden" name="budget" id="selectedBudget" value="">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Reference Links</label>
+              <input type="text" name="references" placeholder="Any mood boards, references, or inspiration (separate with commas)">
+            </div>
+          </div>
+
+          <!-- Step 3: Timeline -->
+          <div class="form-step" data-step="3">
+            <div class="step-header">
+              <span class="section-label label-mono">03 — Timeline</span>
+              <h3 class="step-title headline-lg">When do you need it?</h3>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Preferred Start Date</label>
+              <input type="date" name="startDate" required>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Final Delivery Date Needed</label>
+              <input type="date" name="deliveryDate" required>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Urgency Level</label>
+              <div class="urgency-options" id="urgencyOptions">
+                <button type="button" class="urgency-btn" data-urgency="flexible">
+                  <span class="urgency-icon">📅</span>
+                  <span class="urgency-text">Flexible</span>
+                  <span class="urgency-desc">Any time works</span>
+                </button>
+                <button type="button" class="urgency-btn" data-urgency="standard">
+                  <span class="urgency-icon">⏱️</span>
+                  <span class="urgency-text">Standard</span>
+                  <span class="urgency-desc">4-8 weeks</span>
+                </button>
+                <button type="button" class="urgency-btn" data-urgency="rush">
+                  <span class="urgency-icon">⚡</span>
+                  <span class="urgency-text">Rush</span>
+                  <span class="urgency-desc">ASAP</span>
+                </button>
+              </div>
+              <input type="hidden" name="urgency" id="selectedUrgency" value="">
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Shooting Location(s)</label>
+              <input type="text" name="location" placeholder="Where will we be shooting?">
+            </div>
+          </div>
+
+          <!-- Step 4: Contact -->
+          <div class="form-step" data-step="4">
+            <div class="step-header">
+              <span class="section-label label-mono">04 — Your Details</span>
+              <h3 class="step-title headline-lg">How do we reach you?</h3>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label class="label-mono">Full Name</label>
+                <input type="text" name="name" placeholder="Your name" required>
+              </div>
+              <div class="form-group">
+                <label class="label-mono">Company / Organization</label>
+                <input type="text" name="company" placeholder="Your company (optional)">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Email Address</label>
+              <input type="email" name="email" placeholder="your@email.com" required>
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">Phone Number</label>
+              <input type="tel" name="phone" placeholder="+1 (555) 000-0000">
+            </div>
+
+            <div class="form-group">
+              <label class="label-mono">How did you hear about us?</label>
+              <div class="select-wrapper">
+                <select name="referral">
+                  <option value="" disabled selected>Select an option</option>
+                  <option value="google">Google Search</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="vimeo">Vimeo</option>
+                  <option value="behance">Behance</option>
+                  <option value="referral">Referral</option>
+                  <option value="previous">We've worked together</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group checkbox-group">
+              <label class="checkbox-label">
+                <input type="checkbox" name="newsletter" value="yes">
+                <span class="checkbox-custom"></span>
+                <span>Keep me updated with latest work and news</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Navigation Buttons -->
+          <div class="form-navigation">
+            <button type="button" class="btn-prev" id="prevBtn" disabled>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="19" y1="12" x2="5" y2="12"></line>
+                <polyline points="12 19 5 12 12 5"></polyline>
+              </svg>
+              Back
+            </button>
+            <button type="button" class="btn-next" id="nextBtn">
+              Next Step
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </button>
+            <button type="submit" class="btn-submit" id="submitBtn" style="display: none;">
+              Send Inquiry
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Message -->
+  <div class="success-overlay" id="successOverlay">
+    <div class="success-content">
+      <div class="success-icon">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="9 12 12 15 16 10"></polyline>
+        </svg>
+      </div>
+      <h2 class="headline-lg">Inquiry Sent!</h2>
+      <p>Thank you for reaching out. We'll review your project and get back to you within 48 hours.</p>
+      <a href="index.html" class="btn-primary">
+        Back to Home
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-wordmark">
+        <img src="img/Logo-BlackPoint.png" alt="Blackpoint Studio" height="48">
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 Blackpoint Studio</span>
+        <button class="back-to-top" id="backToTop">
+          <span>Back to top</span>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+  </div>
+
+  <script src="js/main.js"></script>
+  <script src="js/booking.js"></script>
+  <script src="js/preloader.js"></script>
+</body>
+</html>
